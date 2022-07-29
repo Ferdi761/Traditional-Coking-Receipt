@@ -1,0 +1,28 @@
+.parent {
+    /* image url */
+    background-image: url("../images/bg-landing.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    left: 50%; 
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /*  Need a specific value to work */
+    /* width: 100px; */
+}
+
+.child > a {
+    margin-right: 10px;
+}
