@@ -1,17 +1,23 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 5000;
+require("dotenv").config();
+const connectDB = require('./database/connect');
+const {
+    loginView,
+    homeView,
+    indexView,
+} = require('./controllers/taskControllers');
+const port = process.env.PORT || 3000;
 
+// Using public directory
 app.use(express.static(path.join(__dirname, '/public')));
 // console.log(__dirname);
 
+// set ejs as view engine
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    res.status(201);
-    res.render('index');
-});
+app.get('/', indexView);
 
 // not yet implemented
 app.get('/signup', (req, res) => {
@@ -19,22 +25,23 @@ app.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-app.get('/login', (req, res) => {
-    res.status(201);
-    res.render('login');
-});
+app.get('/login', loginView);
 
-app.get('/home', (req, res) => {
-    res.status(201);
-    res.render('home')
-});
+app.get('/home', homeView);
 
+// ongoing
 app.get('/logout', (req, res) => {
     res.status(201);
     res.redirect('/');
 });
 
-
-app.listen(port, () => {
-    console.log(`listening on port http://localhost:${port}`);
-});
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        app.listen(port, console.log(`server is listening on port http://localhost:${port}`));
+    } catch (error) {
+        console.log(error);
+    }
+};
+  
+start();

@@ -8,7 +8,8 @@ body {
     background-size: cover;
 }
 
-.main-container {
-    background-color: orange;
+.container {
+    display: flex;
+    flex-direction: row;
     /* height: 100%; */
 }
