@@ -8,7 +8,7 @@ const {
     loginView,
     homeView,
     signupView,
-} = require('./controllers/taskControllers');
+} = require('./controllers/allControllers');
 const port = process.env.PORT || 3000;
 
 // Using public directory
