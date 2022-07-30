@@ -4,9 +4,10 @@ const path = require('path');
 require("dotenv").config();
 const connectDB = require('./database/connect');
 const {
+    indexView,
     loginView,
     homeView,
-    indexView,
+    signupView,
 } = require('./controllers/taskControllers');
 const port = process.env.PORT || 3000;
 
@@ -20,10 +21,7 @@ app.set('view engine', 'ejs');
 app.get('/', indexView);
 
 // not yet implemented
-app.get('/signup', (req, res) => {
-    res.status(201);
-    res.render('signup');
-});
+app.get('/signup', signupView);
 
 app.get('/login', loginView);
 
