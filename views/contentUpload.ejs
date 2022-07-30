@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AchFerdi | Sign Up</title>
+    <title>AchFerdi | Upload</title>
 
     <!-- CSS only -->
     <link
@@ -26,38 +26,36 @@
   <body>
     <div class="container-sm box-form">
       <div class="text-center my-5">
-        <h2>Sign Up</h2>
+        <h2>Unggah Resep</h2>
       </div>
       <div class="row justify-content-center m-5">
         <div class="col lg-6">
-          <form action="/signup" method="post">
+          <form
+            action="/profile/:id/upload"
+            method="post"
+            enctype="multipart/form-data"
+          >
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username</label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputUsername"
-                name="inputUsername"
-              />
+              <label for="formFile" class="form-label">Pilih foto resep</label>
+              <input class="form-control" type="file" id="formFile" />
             </div>
             <div class="mb-3">
-              <label for="inputEmail" class="form-label">Email address</label>
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                name="inputEmail"
-                placeholder="name@example.com"
-              />
+              <label for="inputTitle" class="form-label">Judul resep</label>
+              <input type="text" class="form-control" id="inputTitle" />
             </div>
             <div class="mb-3">
-              <label for="inputPassword" class="form-label">Password</label>
-              <input
-                type="password"
+              <label for="inputDescription" class="form-label"
+                >Deskripsi resep</label
+              >
+              <textarea
                 class="form-control"
-                id="inputPassword"
-                name="inputPassword"
-              />
+                id="inputDescription"
+                rows="3"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="inputBody" class="form-label">Cara Pembuatan</label>
+              <textarea class="form-control" id="inputBody" rows="6"></textarea>
             </div>
             <button type="reset" class="btn btn-secondary">Reset</button>
             <button type="submit" class="btn btn-primary">Submit</button>

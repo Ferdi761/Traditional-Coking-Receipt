@@ -26,7 +26,7 @@ const receiptSchema = new mongoose.Schema({
     },
 },
 {
-    collection: 'receipt'
+    collection: 'receipts'
 });
 
 module.exports = mongoose.model("Receipt", receiptSchema);

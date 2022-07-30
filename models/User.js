@@ -17,12 +17,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minLength: [8, "must be at least 8 characters"],
     },
-    post: [{
-        type: String,
-    }],
+    post: [{}],
 },
 {
-    collection: 'user'
+    collection: 'users'
 });
 
 module.exports = mongoose.model("User", userSchema);
