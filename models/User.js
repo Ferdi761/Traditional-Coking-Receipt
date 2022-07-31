@@ -1,21 +1,23 @@
 const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
-        maxlength: [20, "can't be more than 20 characters"],
+        required: [true, "username tidak boleh kosong"],
+        maxlength: [20, "username maksimal 20 karakter"],
     },
     email: {
         type: String,
-        required: true,
+        required: [true, "email tidak boleh kosong"],
         unique: true,
+        validate: [isEmail, "masukkan email yang valid"],
         
     },
     password: {
         type: String,
-        required: true,
-        minLength: [8, "must be at least 8 characters"],
+        required: [true, "password tidak boleh kosong"],
+        minlength: [8, "panjang password minimal 8 karakter"],
     },
     post: [{}],
 },

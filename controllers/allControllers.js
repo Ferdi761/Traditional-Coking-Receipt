@@ -45,22 +45,23 @@ const uploadContentView = (req, res) => {
 
 // done but still need to be improved
 const createUser = async (req, res) => {
-    try {
-        let username = req.body.inputUsername;
-        let email = req.body.inputEmail;
-        let password = req.body.inputPassword;
+    let username = req.body.username;
+    let email = req.body.email;
+    let password = req.body.password;
 
-        let data = {
-            username,
-            email,
-            password,
-        };
+    let data = {
+        username,
+        email,
+        password,
+    };
+
+    try {
         const user = await User.create(data);
 
         res.status(201).redirect('/login');
     }
     catch (err) {
-        res.status(500);
+        res.status(500).send("<h1>" + err.code + err.message + "</h1>");
         console.log(err);
     }
 };
