@@ -26,6 +26,24 @@
   <body>
     <%- include('./components/header') %>
     <div class="container">
+      <!-- Search box -->
+      <form class="row g-3 form-group" action="" method="get">
+        <div class="col-auto">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="searchByName"
+            id="searchByName"
+            placeholder="cari resep"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-dark mb-3">Cari</button>
+        </div>
+      </form>
+      <!-- /Search box -->
+
+      <!-- content -->
       <div class="card" style="width: 18rem">
         <img
           src="../images/receipt-images/kue-ampo.jpg"
@@ -42,6 +60,7 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+      <!-- /content -->
     </div>
   </body>
 </html>
