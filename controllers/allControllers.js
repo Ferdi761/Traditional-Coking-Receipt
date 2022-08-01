@@ -1,6 +1,4 @@
-const User = require('../models/User');
-const Receipt = require('../models/Receipt');
-
+const Author = require('../models/Author');
 // done but still need to be improved
 const indexView = (req, res) => {
     res.status(201);
@@ -45,18 +43,18 @@ const uploadContentView = (req, res) => {
 
 // done but still need to be improved
 const createUser = async (req, res) => {
-    let username = req.body.username;
-    let email = req.body.email;
-    let password = req.body.password;
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
 
-    let data = {
+    const data = {
         username,
         email,
         password,
     };
 
     try {
-        const user = await User.create(data);
+        const user = await Author.create(data);
 
         res.status(201).redirect('/login');
     }
@@ -69,6 +67,7 @@ const createUser = async (req, res) => {
 // not implemented yet
 const userLogin = async (req, res) => {
     try {
+        
         res.status(201);
         res.render('index');
     }
@@ -79,7 +78,27 @@ const userLogin = async (req, res) => {
 };
 
 // not implemented yet
-const createReceipt = (req, res) => {
+const createReceipt = async (req, res) => {
+    const authorID = req.params.id;
+    const image = req.body.receiptImage;
+    const title = req.body.receiptTitle;
+    const description = req.body.receiptDesc;
+    const body = req.body.receiptBody;
+    const data = {
+        image,
+        title,
+        description,
+        body,
+    };
+
+    try {
+        const author = await Author.findbyID(authorID);
+
+        
+    }
+    catch (err) {
+
+    }
     res.status(201);
     res.render('index');
 };

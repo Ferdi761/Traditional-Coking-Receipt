@@ -1,32 +1,30 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const receiptSchema = new mongoose.Schema({
-    authorID: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-    },
-    title: {
-        type: String,
-        required: true,
-    },
-    author: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    body: {
-        type: String,
-        required: true,
-    },
-},
-{
-    collection: 'receipts'
-});
+// const receiptSchema = new mongoose.Schema({
+//     // authorID: {
+//     //     type: String,
+//     //     required: true,
+//     // },
+//     image: {
+//         type: String,
+//     },
+//     title: {
+//         type: String,
+//         required: true,
+//     },
+//     author: User.username,
 
-module.exports = mongoose.model("Receipt", receiptSchema);
+//     description: {
+//         type: String,
+//         required: true,
+//     },
+//     body: {
+//         type: String,
+//         required: true,
+//     },
+// },
+// {
+//     collection: 'receipts'
+// });
+
+// module.exports = mongoose.model("Receipt", receiptSchema);

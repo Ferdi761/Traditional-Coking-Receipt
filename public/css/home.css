@@ -8,7 +8,7 @@ body {
     background-size: cover;
 }
 
-.container {
+.content {
     display: flex;
     flex-direction: row;
     /* height: 100%; */
