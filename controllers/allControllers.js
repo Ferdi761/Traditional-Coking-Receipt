@@ -1,4 +1,7 @@
-const Author = require('../models/Author');
+// const Author = require('../models/Author');
+const User = require('../models/User');
+const Receipt = require('../models/Receipt');
+
 // done but still need to be improved
 const indexView = (req, res) => {
     res.status(201);
@@ -54,9 +57,9 @@ const createUser = async (req, res) => {
     };
 
     try {
-        const user = await Author.create(data);
+        const user = await User.create(data);
 
-        res.status(201).redirect('/login');
+        res.status(201).json(user).redirect('/login');
     }
     catch (err) {
         res.status(500).send("<h1>" + err.code + err.message + "</h1>");
@@ -79,7 +82,7 @@ const userLogin = async (req, res) => {
 
 // not implemented yet
 const createReceipt = async (req, res) => {
-    const authorID = req.params.id;
+    const userID = req.params.id;
     const image = req.body.receiptImage;
     const title = req.body.receiptTitle;
     const description = req.body.receiptDesc;
@@ -92,9 +95,10 @@ const createReceipt = async (req, res) => {
     };
 
     try {
-        const author = await Author.findbyID(authorID);
+        const receiptData = await Receipt.insert(data);
+        const user = await User.findbyID(authorID);
 
-        
+        await user["receipt"].insert(receiptData["_id"]);
     }
     catch (err) {
 

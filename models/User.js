@@ -19,7 +19,8 @@
 //         required: [true, "password tidak boleh kosong"],
 //         minlength: [8, "panjang password minimal 8 karakter"],
 //     },
-//     receipt: [Receipt],
+
+//     receipt: [],
 // },
 // {
 //     collection: 'users'
