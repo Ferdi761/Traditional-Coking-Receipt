@@ -59,7 +59,7 @@ const createUser = async (req, res) => {
     try {
         const user = await User.create(data);
 
-        res.status(201).json(user).redirect('/login');
+        res.status(201).redirect('/login');
     }
     catch (err) {
         res.status(500).send("<h1>" + err.code + err.message + "</h1>");
