@@ -2,15 +2,12 @@
 const User = require('../models/User');
 const Receipt = require('../models/Receipt');
 
-// done but still need to be improved
-const getAllContents = (req, res) => {
-        const receipts = await Receipt.find({});
+// not yet implemented
+// const getAllContents = (req, res) => {
+//         Receipt.find({}, (err, receipt) => {
 
-        const receiptMap = {};
-        receipts.forEach((data) => {
-            receiptMap[data._id] = data;
-        });
-};
+//         });
+// };
 
 // done but still need to be improved
 const indexView = (req, res) => {
@@ -31,11 +28,17 @@ const loginView = (req, res) => {
 };
 
 // done but still need to be improved
-const homeView = (req, res) => {
-    const receiptData = getAllContents(req, res);
+const homeView = async (req, res) => {
+    try {
+        const receipt = await Receipt.find({});
     
-    res.status(201);
-    res.render('home', { receiptData: receiptData });
+        res.status(201);
+        res.render('home', { receiptData: receipt });
+    }
+    catch (err) {
+        res.status(500).send("<h1>" + err.code + err.message + "</h1>");
+        console.error(err);
+    }
 };
 
 // not implemented yet
@@ -75,7 +78,7 @@ const createUser = async (req, res) => {
     }
     catch (err) {
         res.status(500).send("<h1>" + err.code + err.message + "</h1>");
-        console.log(err);
+        console.error(err);
     }
 };
 
