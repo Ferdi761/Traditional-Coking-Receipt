@@ -33,7 +33,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-This is my portofolio project for fulfilling applying backend programmer
+This is my portofolio project to implementing my skill.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 

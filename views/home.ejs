@@ -42,22 +42,30 @@
     <!-- /Search box -->
 
     <!-- content -->
-    <div class="container mt-5 content">
-      <div class="card" style="width: 18rem">
-        <img
-          src="../images/receipt-images/kue-ampo.jpg"
-          class="card-img-top"
-          alt="kue ampo"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Kue Ampo</h5>
-          <p class="card-text">
-            Kue khas daerah Tuban berbahan dasar tanah liat. Cocok untuk camilan
-            dengan budget minimalis. Untuk varian pedas bisa menggunakan tanah
-            sengketa.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container">
+      <div class="row">
+        <% for( let index = 0; index < 10; index++ ) { %>
+        <div class="col-4">
+          <div class="container mt-5 content">
+            <div class="card" style="width: 18rem">
+              <img
+                src="../images/receipt-images/kue-ampo.jpg"
+                class="card-img-top"
+                alt="kue ampo"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Kue Ampo</h5>
+                <p class="card-text">
+                  Kue khas daerah Tuban berbahan dasar tanah liat. Cocok untuk
+                  camilan dengan budget minimalis. Untuk varian pedas bisa
+                  menggunakan tanah sengketa.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
         </div>
+        <% } %>
       </div>
     </div>
     <!-- /content -->

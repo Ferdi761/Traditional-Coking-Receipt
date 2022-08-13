@@ -95,7 +95,7 @@ const userLogin = async (req, res) => {
     }
 };
 
-// not implemented yet
+// not implemented yet still need to be improved
 const createReceipt = async (req, res) => {
     const userID = req.params.id;
     const image = req.body.receiptImage;
@@ -110,16 +110,18 @@ const createReceipt = async (req, res) => {
     };
 
     try {
-        const receiptData = await Receipt.insert(data);
-        const user = await User.findbyID(authorID);
+        const receiptData = await Receipt.create(data);
+        const user = await User.findbyID(userID);
 
         await user["receipt"].insert(receiptData["_id"]);
+
+        res.status(201);
+        res.redirect('/home');
     }
     catch (err) {
-
+        res.status(500).send("<h1>" + err.code + err.message + "</h1>");
+        console.error(err);
     }
-    res.status(201);
-    res.render('index');
 };
 
 // not implemented yet
