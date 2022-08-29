@@ -1,4 +1,3 @@
-// const Author = require('../models/Author');
 const User = require('../models/User');
 const Receipt = require('../models/Receipt');
 
@@ -43,8 +42,10 @@ const homeView = async (req, res) => {
 
 // not implemented yet
 const profileView = (req, res) => {
+    const id = req.params.id;
+    console.log(id);
     res.status(201);
-    res.render('index');
+    res.render('profileView', {id : id});
 };
 
 // not implemented yet
@@ -55,8 +56,7 @@ const editProfileView = (req, res) => {
 
 // ongoing
 const uploadContentView = (req, res) => {
-    res.status(201);
-    res.render('contentUpload');
+    res.status(201).render('contentUpload');
 };
 
 // done but still need to be improved
@@ -68,29 +68,40 @@ const createUser = async (req, res) => {
     const data = {
         username,
         email,
-        password,
+        password
     };
-
+    
     try {
-        const user = await User.create(data);
+        const userData = await User.create(data);
+        console.log("test data");
+        console.log(userData);
 
         res.status(201).redirect('/login');
     }
     catch (err) {
-        res.status(500).send("<h1>" + err.code + err.message + "</h1>");
+        res.status(500).send("<h1>" + err.code + err.message + "</h1>\n<br/>\n");
         console.error(err);
     }
 };
 
 // not implemented yet
 const userLogin = async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
     try {
+        const unameCheck = await User.findOne({ username }).exec();
+        const passCheck = await User.findOne({ password }).exec();
         
-        res.status(201);
-        res.render('index');
+        if (unameCheck._id === passCheck._id) {
+            res.status(201).render('index');
+        }
+        else {
+            throw "username atau password salah!";
+        }
     }
     catch (err) {
-        res.status(500);
+        res.status(500).end(`<h1>${err}</h1>`);
         console.log(err);
     }
 };

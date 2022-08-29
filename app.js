@@ -8,7 +8,7 @@ const connectDB = require('./database/connect');
 const allRoutes = require('./routes/allRoutes');
 const port = process.env.PORT || 3000;
 
-// image handlers
+// receipt images handlers
 const multer = require('multer');
 const receiptStorage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -16,11 +16,14 @@ const receiptStorage = multer.diskStorage({
     }
 });
 
+// user images handlers
 const userStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/images/user-images');
     }
 });
+
+// app.use(express.json());
 
 // Using public directory
 app.use(express.static(path.join(__dirname, '/public')));
@@ -28,8 +31,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 // set ejs as view engine
 app.set('view engine', 'ejs');
 
-// set bodyParser
+// set bodyParser url encoding
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// set bodyParser application/json
+app.use(bodyParser.json());
 
 // using all route
 app.use('/', allRoutes);
