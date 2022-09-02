@@ -1,5 +1,11 @@
 const User = require('../models/User');
 const Receipt = require('../models/Receipt');
+const jwt = require('jsonwebtoken');
+
+// function to create token
+const createToken = (id) => {
+    return jwt.sign({ id }, 'user secret');
+};
 
 // not yet implemented
 // const getAllContents = (req, res) => {
@@ -84,24 +90,19 @@ const createUser = async (req, res) => {
     }
 };
 
-// not implemented yet
+// Login route, need more improvements
 const userLogin = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username, password } = req.body;
 
     try {
-        const unameCheck = await User.findOne({ username }).exec();
-        const passCheck = await User.findOne({ password }).exec();
-        
-        if (unameCheck._id === passCheck._id) {
-            res.status(201).render('index');
-        }
-        else {
-            throw "username atau password salah!";
-        }
+        const user = await User.login(username, password);
+        console.log(user);
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true });
+        res.status(201).json({ user: user._id });
+
     }
     catch (err) {
-        res.status(500).end(`<h1>${err}</h1>`);
         console.log(err);
     }
 };
